@@ -1,4 +1,4 @@
-let s:config = #{labels: {}, opts:{}}
+let s:config = #{labels: {}, opts: {}}
 
 function! skkeleton_state_popup#config(config) abort
   let s:config.labels = a:config ->get('labels', {})
@@ -79,7 +79,7 @@ function! s:current_label() abort
   let phase = g:skkeleton#state ->get('phase', '')
 
   if phase ==# 'escape' && g:skkeleton#get_config() ->get('keepState', v:false)
-      return s:config.labels ->get('input', {}) ->get('hira', '')
+    return s:config.labels ->get('input', {}) ->get('hira', '')
   endif
   if empty(mode)
     return s:config.labels ->get('latin', '')
