@@ -15,9 +15,10 @@ You can use your preferred plugin manager.
 ## Usage
 
 Register your configuration by executing `skkeleton_state_popup#config()`, and
-then `skkeleton_state_popup#run()` to activate it. You can set the strings that
+then `skkeleton_state_popup#enable()` to activate it. You can set the strings that
 displays in a popup window and the option of the window with
-`skkeleton_state_popup#config`.
+`skkeleton_state_popup#config`. You can stop the popup by executing
+`skkeleton_state_popup#disable()` whenever you like.
 
 In Vim, you can specify the popup window options, which is used as an argument
 when executing `popup_create()`.

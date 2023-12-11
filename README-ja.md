@@ -13,7 +13,7 @@ Skkeleton の状態をポップアップで表示するためのプラグイン�
 
 ## 使用法
 
-`skkeleton_state_popup#config()`で設定を登録して、`skkeleton_state_popup#run()`で設定を適用させます。`skkeleton_state_popup#config()`では、ポップアップに表示する文字列と、ポップアップ・ウィンドウのオプションを設定することができます。
+`skkeleton_state_popup#config()`で設定を登録して、`skkeleton_state_popup#enable()`で設定を適用させます。`skkeleton_state_popup#config()`では、ポップアップに表示する文字列と、ポップアップ・ウィンドウのオプションを設定することができます。ポップアップの表示を止めるには`skkeleton_state_popup#disable()`を実行します。
 
 Vim では、`popup_create()`に渡すオプションを指定できます。
 
@@ -32,7 +32,7 @@ call skkeleton_state_popup#config(#{
   \   },
   \   opts: #{pos: 'botleft', line: 'cursor+1', col: 'cursor', highlight: 'WildMenu'},
   \ })
-call skkeleton_state_popup#run()
+call skkeleton_state_popup#enable()
 ```
 
 ### Neovim
@@ -47,7 +47,7 @@ call skkeleton_state_popup#config(#{
   \   },
   \   opts: #{relative: 'cursor', col: 0, row: 1, anchor: 'NW', style: 'minimal'},
   \ })
-call skkeleton_state_popup#run()
+call skkeleton_state_popup#enable()
 ```
 
 ## ライセンス

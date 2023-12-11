@@ -5,7 +5,7 @@ function! skkeleton_state_popup#config(config) abort
   let s:config.opts   = a:config ->get('opts', {})
 endfunction
 
-function! skkeleton_state_popup#run() abort
+function! skkeleton_state_popup#enable() abort
   let suffix = has('nvim') ? 'nvim' : 'vim'
   let s:create_or_update_popup = function('s:create_or_update_popup_in_' .. suffix)
   let s:close_popup = function('s:close_popup_in_' .. suffix)
@@ -20,6 +20,15 @@ function! skkeleton_state_popup#run() abort
     autocmd User skkeleton-handled if mode() =~# '^i' | call s:create_or_update_popup() | endif
     autocmd InsertLeave <buffer> if has_key(s:, 'popup_id') | call s:close_popup() | endif
   augroup END
+endfunction
+
+let skkeleton_state_popup#run = function('skkeleton_state_popup#enable')
+
+function! skkeleton_state_popup#disable() abort
+  if has_key(s:, 'popup_id')
+    call s:close_popup()
+  endif
+  autocmd! skkeleton-state-popup
 endfunction
 
 function! s:create_or_update_popup_in_vim() abort
