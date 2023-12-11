@@ -79,7 +79,12 @@ function! s:current_label() abort
   let phase = g:skkeleton#state ->get('phase', '')
 
   if phase ==# 'escape' && g:skkeleton#get_config() ->get('keepState', v:false)
-    return s:config.labels ->get('input', {}) ->get('hira', '')
+    if has_key(s:, 'current_bufnr') && s:current_bufnr == bufnr()
+      return s:config.labels ->get('input', {}) ->get('hira', '')
+    else
+      let s:current_bufnr = bufnr()
+      return ''
+    endif
   endif
   if empty(mode)
     return s:config.labels ->get('latin', '')
