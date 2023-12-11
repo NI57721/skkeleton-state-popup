@@ -13,12 +13,12 @@ function! skkeleton_state_popup#run() abort
   augroup skkeleton-state-popup
     autocmd!
     if has_key(s:config.labels, 'latin')
-      autocmd InsertEnter,CursorMovedI <buffer> call s:create_or_update_popup()
+      autocmd InsertEnter,CursorMovedI * call s:create_or_update_popup()
     else
-      autocmd InsertEnter <buffer> call s:create_or_update_popup()
+      autocmd InsertEnter * call s:create_or_update_popup()
     endif
     autocmd User skkeleton-handled if mode() =~# '^i' | call s:create_or_update_popup() | endif
-    autocmd InsertLeave <buffer> if has_key(s:, 'popup_id') | call s:close_popup() | endif
+    autocmd InsertLeave * if has_key(s:, 'popup_id') | call s:close_popup() | endif
   augroup END
 endfunction
 
