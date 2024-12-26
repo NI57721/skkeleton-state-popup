@@ -68,7 +68,7 @@ function! s:create_or_update_popup_in_nvim() abort
   if !has_key(s:, 'buf')
     let s:buf = nvim_create_buf(v:false, v:true)
   endif
-  call nvim_buf_set_lines(s:buf, 0, 0, v:true, [label])
+  call nvim_buf_set_lines(s:buf, 0, 1, v:true, [label])
   if has_key(s:, 'popup_id') && nvim_win_is_valid(s:popup_id)
     call nvim_win_set_config(s:popup_id, s:config.opts)
   else
