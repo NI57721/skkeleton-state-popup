@@ -18,7 +18,7 @@ function! skkeleton_state_popup#enable() abort
       autocmd InsertEnter * call s:create_or_update_popup()
     endif
     autocmd User skkeleton-handled if mode() =~# '^i' | call s:create_or_update_popup() | endif
-    autocmd InsertLeave * call s:close_popup()
+    autocmd ModeChanged i*:n* call s:close_popup()
   augroup END
 endfunction
 
