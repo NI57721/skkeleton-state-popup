@@ -87,7 +87,15 @@ function! s:close_popup_in_nvim() abort
   endif
 
   if has_key(s:, 'buf')
-    execute 'bwipeout! ' .. s:buf
+    if getcmdwintype() ==# ''
+      execute 'bwipeout! ' .. s:buf
+    else
+      " The `:bwipeout` command is not allowed in cmdwin.  Postpone buffer
+      " removal after leaving cmdwin.
+      execute printf(
+        \ 'autocmd CmdwinLeave * call timer_start(0, { _ -> "bwipeout! %d" })',
+        \ s:buf)
+    endif
     call remove(s:, 'buf')
   endif
 endfunction
