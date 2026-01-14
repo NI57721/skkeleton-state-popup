@@ -93,7 +93,7 @@ function! s:close_popup_in_nvim() abort
       " The `:bwipeout` command is not allowed in cmdwin.  Postpone buffer
       " removal after leaving cmdwin.
       execute printf(
-        \ 'autocmd CmdwinLeave * call timer_start(0, { _ -> "bwipeout! %d" })',
+        \ 'autocmd CmdwinLeave * ++once call timer_start(0, { _ -> execute("bwipeout! %d") })',
         \ s:buf)
     endif
     call remove(s:, 'buf')
